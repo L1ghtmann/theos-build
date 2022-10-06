@@ -1,0 +1,26 @@
+---
+name: theos-build
+description: Build a package with theos
+
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+    branches:
+      - main
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+    branches:
+      - main
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/L1ghtmann/theos/pr8/bin/install-theos)"
+      shell: bash
+    - run: |
+        export THEOS=~/theos
+        make clean package FINALPACKAGE=1
+      shell: bash
