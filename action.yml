@@ -1,6 +1,11 @@
 ---
 name: theos-build
 description: Build a package with theos
+inputs:
+  extra_args:
+    description: 'Extra arguments to pass to Theos/make'
+    default: ''
+    required: false
 
 on:
   push:
@@ -22,5 +27,5 @@ runs:
       shell: bash
     - run: |
         export THEOS=~/theos
-        make clean package FINALPACKAGE=1
+        make clean package FINALPACKAGE=1 ${{ inputs.extra_args }}
       shell: bash
