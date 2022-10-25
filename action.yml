@@ -27,5 +27,5 @@ runs:
       shell: bash
     - run: |
         export THEOS=~/theos
-        make clean package FINALPACKAGE=1 ${{ inputs.extra_args }}
+        make clean package ${{ inputs.extra_args }}
       shell: bash
