@@ -23,7 +23,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        bash -c "$(curl -fsSL https://raw.githubusercontent.com/L1ghtmann/theos/pr8/bin/install-theos)"
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
       shell: bash
     - run: |
         export THEOS=~/theos
