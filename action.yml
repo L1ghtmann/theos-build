@@ -2,6 +2,10 @@
 name: theos-build
 description: Build a package with theos
 inputs:
+  sdk:
+    description: 'Additional theos/sdks SDK to install (e.g., iPhoneOS14.5)'
+    default: ''
+    required: false
   extra_args:
     description: 'Extra arguments to pass to Theos/make'
     default: ''
@@ -24,8 +28,11 @@ runs:
   steps:
     - run: |
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+        echo "THEOS=~/theos" >> >> $GITHUB_ENV
+        curl -LO https://raw.githubusercontent.com/L1ghtmann/theos/install-sdk/bin/install-sdk
+        chmod +x install-sdk
+        ./install-sdk ${{ inputs.sdk }}
       shell: bash
     - run: |
-        export THEOS=~/theos
         make clean package ${{ inputs.extra_args }}
       shell: bash

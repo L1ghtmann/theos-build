@@ -15,6 +15,7 @@ steps:
     - name: Build Package
       uses: L1ghtmann/theos-build@main
       with:
-        extra_args: <space-separated list of args here (e.g., messages=yes, THEOS_DEVICE_IP, etc)>
+        sdk: <theos/sdks SDK to install (e.g., iPhoneOS14.5)>
+        extra_args: <space-separated list of args here (e.g., messages=yes, FINALPACKAGE, etc)>
 ```
 
