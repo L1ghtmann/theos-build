@@ -29,7 +29,7 @@ runs:
     - run: |
         bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
         if ! [[ -z "${{ inputs.sdk }}" ]]; then
-          curl -LO https://raw.githubusercontent.com/L1ghtmann/theos/install-sdk/bin/install-sdk
+          curl -LO https://raw.githubusercontent.com/theos/theos/master/bin/install-sdk
           chmod +x install-sdk
           export THEOS=~/theos
           ./install-sdk ${{ inputs.sdk }}
