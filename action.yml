@@ -27,8 +27,10 @@ runs:
   using: "composite"
   steps:
     - run: |
-        bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
-        if ! [[ -z "${{ inputs.sdk }}" ]]; then
+        if [[ -z "$THEOS" || ! -d "$THEOS" ]]; then
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+        fi
+        if ! [[ -z "${{ inputs.sdk }}" && -d "$THEOS/sdks/${{ inputs.sdk }}.sdk" ]]; then
           curl -LO https://raw.githubusercontent.com/theos/theos/master/bin/install-sdk
           chmod +x install-sdk
           export THEOS=~/theos
